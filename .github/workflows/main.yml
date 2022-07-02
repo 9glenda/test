@@ -18,7 +18,5 @@ jobs:
         uses: cachix/install-nix-action@v13
         with:
           nix_path: "nixpkgs=https://github.com/NixOS/nixpkgs/archive/master.tar.gz"
-      - name: "Install Flakes"
-        run: echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
       - name: Flake
         run: nix flake init
