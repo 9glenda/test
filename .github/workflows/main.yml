@@ -10,13 +10,15 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.2
 
       - name: "Install Nix ❄️"
         uses: cachix/install-nix-action@v13
         with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
           nix_path: "nixpkgs=https://github.com/NixOS/nixpkgs/archive/master.tar.gz"
       - name: Flake
-        run: nix flake init --extra-experimental-features nix-command
+        run: nix flake check
